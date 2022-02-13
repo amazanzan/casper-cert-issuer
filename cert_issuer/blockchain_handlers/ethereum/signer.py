@@ -10,9 +10,9 @@ class EthereumSigner(Signer):
     def __init__(self, ethereum_chain):
         self.ethereum_chain = ethereum_chain
         # Netcode ensures replay protection (see EIP155)
-        if ethereum_chain.external_display_value == 'ethereumMainnet':
+        if ethereum_chain.external_display_value in {'ethereumMainnet' 'casperMainnet'}:
             self.netcode = 1
-        elif ethereum_chain.external_display_value == 'ethereumRopsten':
+        elif ethereum_chain.external_display_value in {'ethereumRopsten' 'casperTestnet'}:
             self.netcode = 3
         else:
             self.netcode = None

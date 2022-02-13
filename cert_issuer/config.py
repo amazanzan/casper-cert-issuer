@@ -81,6 +81,16 @@ def add_arguments(p):
                    help='The URL of an Ethereum Ropsten RPC node - useful in the case of third-party full node vendors.',
                    env_var='ROPSTEN_RPC_URL')
 
+    p.add_argument('--casper_rpc_ip_address', default=None, type=str,
+                   help='The IP address of an Casper mainnet RPC node such as CSPR Live.',
+                   env_var='CASPER_RPC_IP_ADDRESS')
+    p.add_argument('--caspertest_rpc_ip_address', default=None, type=str,
+                   help='The IP address of an Casper testnet RPC node such as CSPR Live',
+                   env_var='CASPERTEST_RPC_IP_ADDRESS')
+    p.add_argument('--target_address', default=None, type=str,
+                   help='Target CSPR address for the transfer transaction',
+                   env_var='TARGET_ADDRESS')
+
     p.add_argument('--blockcypher_api_token', default=None, type=str,
                    help='the API token of the blockcypher broadcaster', env_var='BLOCKCYPHER_API_TOKEN')
 
@@ -102,7 +112,8 @@ def get_config():
     # ensure it's a supported chain
     if parsed_config.chain.blockchain_type != BlockchainType.bitcoin and \
                     parsed_config.chain.blockchain_type != BlockchainType.ethereum and \
-                    parsed_config.chain.blockchain_type != BlockchainType.mock:
+                    parsed_config.chain.blockchain_type != BlockchainType.mock and \
+                    parsed_config.chain.blockchain_type != BlockchainType.casper:
         raise UnknownChainError(parsed_config.chain.name)
 
     logging.info('This run will try to issue on the %s chain', parsed_config.chain.name)

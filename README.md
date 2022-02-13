@@ -1,8 +1,26 @@
-[![Build Status](https://travis-ci.org/blockchain-certificates/cert-issuer.svg?branch=master)](https://travis-ci.org/blockchain-certificates/cert-issuer)
-[![PyPI version](https://badge.fury.io/py/cert-issuer.svg)](https://badge.fury.io/py/cert-issuer)
+﻿# Casper-specific Instructions
+## Prerequisites
+- Python 3.9
+- Two Casper accounts that you control. The issuing account must use a SECP256K1 key. Instructions for creating new accounts can be found here: https://docs.cspr.community/docs/user-guides/SignerGuide.html
+- A small amount of CSPR in order to make transfer transactions. The CSPR testnet faucet is here: https://testnet.cspr.live/tools/faucet
 
+## Installation
+1. Clone this repository
+2. Run `python setup.py experimental --blockchain=casper`
 
-# cert-issuer
+## How to issue a Casper Blockcert
+1. Place unsigned certificate(s) in `data/unsigned_certificates`. These certificates are generated using [cert-tools](https://github.com/blockchain-certificates/cert-tools), but a sample unsigned V2 certificate for basic testing purposes [can be found here](https://raw.githubusercontent.com/blockchain-certificates/cert-issuer/v2/examples/data-testnet/unsigned_certificates/4e7d75c5-281c-45de-93cc-3212b1349ee9.json).
+2. Set your issuing configuration by modifying conf_casper.ini (instructions are within the file).
+3. Run `python cert_issuer -c conf_casper.ini`
+
+## Testing
+Run `bash run_tests.sh`
+
+## Licensing and Acknowledgements
+Casper-related code and other code in this fork is UNLICENSED. When DEVxDAO formally approves the milestone this code was submitted under, the unlicensed code will be released under the MIT License or another OSI-approved open source software license.
+Acknowledgements thanking DEVxDAO and other contributors will also be added at that time.
+
+# General Instructions
 
 The cert-issuer project issues blockchain certificates by creating a transaction from the issuing institution to the
 recipient on the Bitcoin blockchain that includes the hash of the certificate itself.

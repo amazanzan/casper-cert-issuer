@@ -23,7 +23,7 @@ build/*
 
 requirements.txt
 .idea/*
-*.ini*
+*.*.ini
 pk_issuer.txt
 blockcerts testnet bitcoin address.txt
 .vscode/*
