@@ -21,7 +21,6 @@ data*/*
 dist/*
 build/*
 
-requirements.txt
 .idea/*
 *.*.ini
 pk_issuer.txt

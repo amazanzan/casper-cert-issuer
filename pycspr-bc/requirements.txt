@@ -1,0 +1,5 @@
+cryptography
+ecdsa
+jsonrpcclient
+requests
+sseclient-py
