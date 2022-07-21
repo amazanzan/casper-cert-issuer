@@ -1,6 +1,8 @@
 import logging
 import sys
 
+from cert_core import Chain
+
 from cert_issuer.issuer import Issuer
 
 if sys.version_info.major < 3:
@@ -25,9 +27,12 @@ def issue(app_config, certificate_batch_handler, transaction_handler):
 
 def main(app_config):
     chain = app_config.chain
-    if chain.is_ethereum_type():
+    if chain == Chain.ethereum_mainnet or chain == Chain.ethereum_ropsten:
         from cert_issuer.blockchain_handlers import ethereum
         certificate_batch_handler, transaction_handler, connector = ethereum.instantiate_blockchain_handlers(app_config)
+    elif chain == Chain.casper_mainnet or chain == Chain.casper_testnet:
+        from cert_issuer.blockchain_handlers import casper
+        certificate_batch_handler, transaction_handler, connector = casper.instantiate_blockchain_handlers(app_config)
     else:
         from cert_issuer.blockchain_handlers import bitcoin
         certificate_batch_handler, transaction_handler, connector = bitcoin.instantiate_blockchain_handlers(app_config)

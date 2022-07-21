@@ -49,7 +49,7 @@ def add_arguments(p):
     p.add_argument('--max_retry', default=10, type=int, help='Maximum attempts to retry transaction on failure', env_var='MAX_RETRY')
     p.add_argument('--chain', default='bitcoin_regtest',
                    help=('Which chain to use. Default is bitcoin_regtest (which is how the docker container is configured). Other options are '
-                         'bitcoin_testnet bitcoin_mainnet, mockchain, ethereum_mainnet, ethereum_ropsten, ethereum_goerli, ethereum_sepolia'), env_var='CHAIN')
+                         'bitcoin_testnet bitcoin_mainnet, mockchain, ethereum_mainnet, ethereum_ropsten'), env_var='CHAIN')
 
     p.add_argument('--safe_mode', dest='safe_mode', default=True, action='store_true',
                    help='Used to make sure your private key is not plugged in with the wifi.', env_var='SAFE_MODE')
@@ -81,35 +81,19 @@ def add_arguments(p):
     p.add_argument('--ropsten_rpc_url', default=None, type=str,
                    help='The URL of an Ethereum Ropsten RPC node - useful in the case of third-party full node vendors.',
                    env_var='ROPSTEN_RPC_URL')
-    p.add_argument('--goerli_rpc_url', default=None, type=str,
-                   help='The URL of an Ethereum Goerli RPC node - useful in the case of third-party full node vendors.',
-                   env_var='GOERLI_RPC_URL')
-    p.add_argument('--sepolia_rpc_url', default=None, type=str,
-                   help='The URL of an Ethereum Sepolia RPC node - useful in the case of third-party full node vendors.',
-                   env_var='SEPOLIA_RPC_URL')
+
+    p.add_argument('--casper_rpc_ip_address', default=None, type=str,
+                   help='The IP address of an Casper mainnet RPC node such as CSPR Live.',
+                   env_var='CASPER_RPC_IP_ADDRESS')
+    p.add_argument('--caspertest_rpc_ip_address', default=None, type=str,
+                   help='The IP address of an Casper testnet RPC node such as CSPR Live',
+                   env_var='CASPERTEST_RPC_IP_ADDRESS')
+    p.add_argument('--target_address', default=None, type=str,
+                   help='Target CSPR address for the transfer transaction',
+                   env_var='TARGET_ADDRESS')
 
     p.add_argument('--blockcypher_api_token', default=None, type=str,
                    help='the API token of the blockcypher broadcaster', env_var='BLOCKCYPHER_API_TOKEN')
-
-    p.add_argument('--context_urls',
-                   default=None,
-                   type=str,
-                   help='When trying to sign a document with an unsupported context, ' +
-                        'provide the url and the path to the local context file.' +
-                        'Space separated list, must be used in conjunction with the `--context_file_paths` property.',
-                   env_var='CONTEXT_URLS',
-                   nargs='+'
-                   )
-    p.add_argument('--context_file_paths',
-                   default=None,
-                   type=str,
-                   help='When trying to sign a document with an unsupported context, ' +
-                        'provide the url and the path to the local context file. ' +
-                        'Space separated list, must be used in conjunction with the `--context_urls` property. ' +
-                        'Path should be relative to CWD, order should match `--context_urls` order.',
-                   env_var='CONTEXT_FILE_PATHS',
-                   nargs='+'
-                   )
 
 
 def get_config():
@@ -129,7 +113,8 @@ def get_config():
     # ensure it's a supported chain
     if parsed_config.chain.blockchain_type != BlockchainType.bitcoin and \
                     parsed_config.chain.blockchain_type != BlockchainType.ethereum and \
-                    parsed_config.chain.blockchain_type != BlockchainType.mock:
+                    parsed_config.chain.blockchain_type != BlockchainType.mock and \
+                    parsed_config.chain.blockchain_type != BlockchainType.casper:
         raise UnknownChainError(parsed_config.chain.name)
 
     logging.info('This run will try to issue on the %s chain', parsed_config.chain.name)

@@ -1,0 +1,77 @@
+action: GLOB, msg: packaging
+cwd: /Users/alex/Projects/casper-blockcerts/cspr-cert-issuer-testbed/cspr-cert-core
+cmd: /Users/alex/anaconda/envs/p39/bin/python setup.py sdist --formats=zip --dist-dir .tox/dist
+running sdist
+running egg_info
+writing cert_core.egg-info/PKG-INFO
+writing dependency_links to cert_core.egg-info/dependency_links.txt
+writing requirements to cert_core.egg-info/requires.txt
+writing top-level names to cert_core.egg-info/top_level.txt
+reading manifest file 'cert_core.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+warning: no files found matching 'logging.conf'
+adding license file 'LICENSE'
+writing manifest file 'cert_core.egg-info/SOURCES.txt'
+running check
+creating cert-core-2.1.10
+creating cert-core-2.1.10/cert_core
+creating cert-core-2.1.10/cert_core.egg-info
+creating cert-core-2.1.10/cert_core/cert_model
+creating cert-core-2.1.10/cert_core/cert_store
+creating cert-core-2.1.10/tests
+copying files to cert-core-2.1.10...
+copying LICENSE -> cert-core-2.1.10
+copying MANIFEST.in -> cert-core-2.1.10
+copying README.md -> cert-core-2.1.10
+copying requirements.txt -> cert-core-2.1.10
+copying setup.py -> cert-core-2.1.10
+copying cert_core/__init__.py -> cert-core-2.1.10/cert_core
+copying cert_core.egg-info/PKG-INFO -> cert-core-2.1.10/cert_core.egg-info
+copying cert_core.egg-info/SOURCES.txt -> cert-core-2.1.10/cert_core.egg-info
+copying cert_core.egg-info/dependency_links.txt -> cert-core-2.1.10/cert_core.egg-info
+copying cert_core.egg-info/requires.txt -> cert-core-2.1.10/cert_core.egg-info
+copying cert_core.egg-info/top_level.txt -> cert-core-2.1.10/cert_core.egg-info
+copying cert_core/cert_model/__init__.py -> cert-core-2.1.10/cert_core/cert_model
+copying cert_core/cert_model/model.py -> cert-core-2.1.10/cert_core/cert_model
+copying cert_core/cert_store/__init__.py -> cert-core-2.1.10/cert_core/cert_store
+copying cert_core/cert_store/certificate_store.py -> cert-core-2.1.10/cert_core/cert_store
+copying cert_core/cert_store/config.py -> cert-core-2.1.10/cert_core/cert_store
+copying cert_core/cert_store/gridfs_key_value_store.py -> cert-core-2.1.10/cert_core/cert_store
+copying cert_core/cert_store/helpers.py -> cert-core-2.1.10/cert_core/cert_store
+copying tests/__init__.py -> cert-core-2.1.10/tests
+copying tests/test_certificate_store.py -> cert-core-2.1.10/tests
+copying tests/test_init.py -> cert-core-2.1.10/tests
+copying tests/test_model.py -> cert-core-2.1.10/tests
+Writing cert-core-2.1.10/setup.cfg
+creating '.tox/dist/cert-core-2.1.10.zip' and adding 'cert-core-2.1.10' to it
+adding 'cert-core-2.1.10'
+adding 'cert-core-2.1.10/tests'
+adding 'cert-core-2.1.10/cert_core.egg-info'
+adding 'cert-core-2.1.10/cert_core'
+adding 'cert-core-2.1.10/PKG-INFO'
+adding 'cert-core-2.1.10/LICENSE'
+adding 'cert-core-2.1.10/requirements.txt'
+adding 'cert-core-2.1.10/MANIFEST.in'
+adding 'cert-core-2.1.10/README.md'
+adding 'cert-core-2.1.10/setup.py'
+adding 'cert-core-2.1.10/setup.cfg'
+adding 'cert-core-2.1.10/tests/test_model.py'
+adding 'cert-core-2.1.10/tests/__init__.py'
+adding 'cert-core-2.1.10/tests/test_certificate_store.py'
+adding 'cert-core-2.1.10/tests/test_init.py'
+adding 'cert-core-2.1.10/cert_core.egg-info/PKG-INFO'
+adding 'cert-core-2.1.10/cert_core.egg-info/SOURCES.txt'
+adding 'cert-core-2.1.10/cert_core.egg-info/requires.txt'
+adding 'cert-core-2.1.10/cert_core.egg-info/top_level.txt'
+adding 'cert-core-2.1.10/cert_core.egg-info/dependency_links.txt'
+adding 'cert-core-2.1.10/cert_core/cert_model'
+adding 'cert-core-2.1.10/cert_core/cert_store'
+adding 'cert-core-2.1.10/cert_core/__init__.py'
+adding 'cert-core-2.1.10/cert_core/cert_model/__init__.py'
+adding 'cert-core-2.1.10/cert_core/cert_model/model.py'
+adding 'cert-core-2.1.10/cert_core/cert_store/config.py'
+adding 'cert-core-2.1.10/cert_core/cert_store/certificate_store.py'
+adding 'cert-core-2.1.10/cert_core/cert_store/__init__.py'
+adding 'cert-core-2.1.10/cert_core/cert_store/gridfs_key_value_store.py'
+adding 'cert-core-2.1.10/cert_core/cert_store/helpers.py'
+removing 'cert-core-2.1.10' (and everything under it)

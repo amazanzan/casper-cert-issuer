@@ -28,14 +28,18 @@ class InstallCommand(Command):
         self.blockchain = 'bitcoin'
 
     def finalize_options(self):
-        assert self.blockchain in ('bitcoin', 'ethereum'), 'Invalid blockchain!'
+        assert self.blockchain in ('bitcoin', 'ethereum', 'casper'), 'Invalid blockchain!'
 
     def run(self):
-        if self.blockchain == 'ethereum':
+        if self.blockchain == 'ethereum' or self.blockchain == 'casper':
             with open('ethereum_requirements.txt') as f:
                 install_reqs = f.readlines()
                 eth_reqs = [str(ir) for ir in install_reqs]
                 reqs.extend(eth_reqs)
+            if self.blockchain == 'casper':
+                subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-e', './pycspr-bc/'])
+                subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-e', './cspr-cert-core/'])
+                subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-e', './cspr-lds-merkle-proof-2019-py/'])
         else:
             with open('bitcoin_requirements.txt') as f:
                 install_reqs = f.readlines()
@@ -46,6 +50,7 @@ class InstallCommand(Command):
 def install(packages):
     for package in packages:
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-e', '.'])
 
 
 setup(

@@ -1,7 +1,5 @@
-FROM lncm/bitcoind:v22.0
+FROM seegno/bitcoind:0.13-alpine
 MAINTAINER Kim Duffy "kimhd@mit.edu"
-
-USER root
 
 COPY . /cert-issuer
 COPY conf_regtest.ini /etc/cert-issuer/conf.ini
@@ -19,7 +17,7 @@ RUN apk add --update \
         linux-headers \
         make \
         musl-dev \
-        python2 \
+        python \
         python3 \
         python3-dev \
         tar \

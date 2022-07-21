@@ -1,7 +1,8 @@
 import logging
 import os
 
-from cert_core import UnknownChainError
+from cert_core import BlockchainType
+from cert_core import Chain, UnknownChainError
 
 from cert_issuer.blockchain_handlers.bitcoin.connectors import BitcoinServiceProviderConnector, MockServiceProviderConnector
 from cert_issuer.blockchain_handlers.bitcoin.signer import BitcoinSigner
@@ -32,9 +33,9 @@ class BitcoinTransactionCostConstants(object):
 def initialize_signer(app_config):
     path_to_secret = os.path.join(app_config.usb_name, app_config.key_file)
 
-    if app_config.chain.is_bitcoin_type():
+    if app_config.chain.blockchain_type == BlockchainType.bitcoin:
         signer = BitcoinSigner(bitcoin_chain=app_config.chain)
-    elif app_config.chain.is_mock_type():
+    elif app_config.chain == Chain.mockchain:
         signer = None
     else:
         raise UnknownChainError(app_config.chain)
@@ -57,7 +58,7 @@ def instantiate_blockchain_handlers(app_config, file_mode=True):
                                                                certificate_handler=CertificateWebV3Handler(),
                                                                merkle_tree=MerkleTreeGenerator(),
                                                                config=app_config)
-    if chain.is_mock_type():
+    if chain == Chain.mockchain:
         transaction_handler = MockTransactionHandler()
         connector = MockServiceProviderConnector()
     else:
