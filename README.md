@@ -14,8 +14,12 @@
 3. Run `python cert_issuer -c conf_casper.ini`
 
 ## Testing
-MAIN TESTS: Run `bash run_tests.sh`  
-CSPR-CERT-CORE TESTS: Run `bash run_tests.sh` from cspr-cert-core. If you have trouble with tox, go to tests/ and run `bash run_tests.sh` there (it doesn't use tox).
+- MAIN TESTS: Run `bash run_tests.sh`  
+- CSPR-CERT-CORE TESTS: Run `bash run_tests.sh` from cspr-cert-core. If you have trouble with tox, go to tests/ and run `bash run_tests.sh` there (it doesn't use tox).
+
+## Troubleshooting
+- Sometimes you'll get "asymmetric key error: failed to verify secp256k1 signature" while issuing. The system will retry automatically and usually succeed after a few tries. If the problem persists, try changing your Casper RPC node IP address in conf_casper.ini.
+- If your machine uses OpenSSL 3.0, you may not be able to run some of the tests because support for older crypto algorithms was removed. This post should help: https://stackoverflow.com/questions/69922525/python-3-9-8-hashlib-and-ripemd160  
 
 ## Contributions, bugs, and security issues
 Please refer to docs/contributing.md for info on how to contribute. Instructions for reporting bugs etc. will be shown when creating an issue on Github.
